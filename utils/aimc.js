@@ -15,23 +15,25 @@ const topicPrefix = '/' + device.productKey + '/' + device.deviceName + '/user';
 
 let client = mqtt.connect('wxs://productKey.iot-as-mqtt.cn-shanghai.aliyuncs.com', getOptions())
 client._connect = function(topic, callback) {
-  client.on('connect', function () {
-    var topic =  topicPrefix + '/' + topic;
-    client.subscribe(topic, function (err) {
+  client.on('connect', function() {
+    let topic = topicPrefix + '/' + topic
+    client.subscribe(topic, function(err) {
       if (err) {
         return
       }
       console.log('connection success')
     })
-    client.on('message', function (topic, message) {
+    client.on('message', function(topic, message) {
       callback(topic, message);
     })
   })
-}
+};
 
 client._publish = function(topic_, message) {
   let topic = topicPrefix + '/' + topic_
-  client.publish(topic, message)
+  client.publish(topic, message, {
+    qos: 1
+  })
 }
 
 /**
