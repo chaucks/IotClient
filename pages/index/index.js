@@ -6,9 +6,11 @@ const aimc = require('../../utils/aimc.js')
 
 var client = aimc._client
 
-client._connect('/switcher', function(topic, message) {
+var topic = 'switcher'
+
+client._connect(topic, function(topic, message) {
     console.log(message.toString())
-});
+})
 
 Page({
   data: {
@@ -52,6 +54,8 @@ Page({
     }
   },
   getUserInfo: function(e) {
+    client._publish(topic, '3')
+      
     console.log(e)
     app.globalData.userInfo = e.detail.userInfo
     this.setData({
