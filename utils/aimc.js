@@ -1,12 +1,13 @@
 // Alibaba IOT Mqtt client
 const crypto = require('hex_hmac_sha1.js')
+const secret = require('secret.js')
 let mqtt = require('mqtt.min.js')
 const util = require('util.js')
 
 const device = {
-  productKey: "替换",
-  deviceName: "替换",
-  deviceSecret: "替换",
+  productKey: secret._productKey,
+  deviceName: secret._deviceName,
+  deviceSecret: secret._deviceSecret,
   regionId: "cn-shanghai"
 }
 
