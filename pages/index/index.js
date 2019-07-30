@@ -2,11 +2,11 @@
 //获取应用实例
 const app = getApp()
 
-const aimc = require('../../utils/aimc.js')
+let aimc = require('../../utils/aimc.js')
 
-var client = aimc._client
+let client = aimc._client
 
-var topic = 'switcher'
+let topic = 'switcher'
 
 client._connect(topic, function(topic, message) {
     console.log(message.toString())
